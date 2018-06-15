@@ -27,6 +27,7 @@ tagPosition = 2
 # ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: #
 
 outputFilePath = 'pkl_reduc/data.pkl.gz'
+outputFilePath2 = 'pkl_reduc/utils.pkl.gz'
 embeddingsPklPath = 'pkl_reduc/embeddings.pkl.gz'
 trainSentences = readFile(files[0], tokenPosition, tagPosition)
 
@@ -85,6 +86,10 @@ f.close()
 
 f = gzip.open(outputFilePath, 'wb')
 pkl.dump(createMatrices(trainSentences, word2Idx,  label2Idx, case2Idx, max_sentence_length), f, -1)
+f.close()
+
+f = gzip.open(outputFilePath2, 'wb')
+pkl.dump((word2Idx,  label2Idx, case2Idx), f, -1)
 f.close()
 
 print("Data stored in pkl folder")
