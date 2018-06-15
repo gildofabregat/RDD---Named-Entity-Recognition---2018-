@@ -1,5 +1,38 @@
 # Named Entity Recognition - 2018 - RDD Corpus
-Use of deep learning for the recognition of named entities in the RDD corpus.
+Named-entity recognition (NER) (also known as entity identification, entity chunking and entity extraction) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This work explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities.
+
+## Corpus RDD (BIO format)
+We have made use of the relationship files provided in the RDD corpus to carry out this experiment. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
+```
+0	Furthermore	O	O
+1	such	O	O
+2	disruption	O	O
+3	in	O	O
+4	white	O	O
+5	matter	O	O
+6	organization	O	O
+7	appears	O	O
+8	to	O	O
+9	be	O	O
+10	a	O	O
+11	feature	O	O
+12	specific	O	O
+13	to	O	O
+14	Aicardi	BU	O
+15	syndrome	IU	O
+16	and	O	O
+17	not	O	O
+18	shared	O	O
+19	by	O	O
+20	other	O	O
+21	neurodevelopmental	BI	O
+22	disorders	II	O
+23	with	O	O
+24	similar	O	O
+25	anatomic	O	O
+26	manifestations	O	O
+27 . O O
+```
 
 ## Instructions for run the experiment
 
@@ -9,6 +42,9 @@ curl http://u.cs.biu.ac.il/~yogo/data/syntemb/deps.words.bz2 --output deps.words
 bzip2 -d deps.words.bz2
 rm -r levy_word_emb && mkdir levy_word_emb
 mv deps.words levy_word_emb
+```
+To run the experiment
+```bash
 python preprocess.py
 python case_wordNER.py
 ```
@@ -26,13 +62,11 @@ experiment_configuration = {
 }
 ```
 
-## Instructions for loading the model
+## Instructions for loading the pre-trained model
 ```python
 from keras.models import load_model
 model = load_model('trained-model/case_embedding_model.h5')
 ```
-
-
 
 ## Results
 
