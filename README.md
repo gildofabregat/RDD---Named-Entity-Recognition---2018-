@@ -111,15 +111,15 @@ model = load_model('trained-model/case-embedding-model.h5')
 word2Idx, label2Idx, case2Idx = pkl.load(gzip.open('pkl_reduc/utils.pkl.gz', 'rb'))
 idx2Label = {label2Idx[y]:y for y in label2Idx }
 
+sentence = "Furthermore such disruption in white matter organization appears to be a feature specific to Aicardi syndrome and not shared by other neurodevelopmental disorders with similar anatomic manifestations ."
+
+
 # Translation of terms based on dictionaries - 300 is the maximum sentence length allowed by the experiment
-trad_tokens = [word2Idx[x] if x in word2Idx else word2Idx["UNKNOWN_TOKEN"] for x in a.split(" ")]
+trad_tokens = [word2Idx[x] if x in word2Idx else word2Idx["UNKNOWN_TOKEN"] for x in sentence.split(" ")]
 trad_tokens = sequence.pad_sequences([trad_tokens],maxlen=300,padding='post',value=word2Idx["PADDING_TOKEN"])
 
-trad_casing = [getCasing(x,case2Idx) for x in a.split(" ")]
+trad_casing = [getCasing(x,case2Idx) for x in sentence.split(" ")]
 trad_casing = sequence.pad_sequences([trad_casing],maxlen=300,padding='post',value=word2Idx["PADDING_TOKEN"])
-
-
-sentence = "Furthermore such disruption in white matter organization appears to be a feature specific to Aicardi syndrome and not shared by other neurodevelopmental disorders with similar anatomic manifestations ."
 
 zip(sentence.split(" "),[idx2Label[x] for x in np.argmax(model.predict([trad_tokens,trad_casing], verbose=0), axis=2)[0]][:len(sentence.split(" "))])
 ```
