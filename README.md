@@ -3,6 +3,10 @@ Use of deep learning for the recognition of named entities in the RDD corpus.
 
 ## Instructions for run the experiment
 ```bash
+curl http://u.cs.biu.ac.il/~yogo/data/syntemb/deps.words.bz2 --output deps.words.bz2
+bzip2 -d deps.words.bz2
+rm -r levy_word_emb && mkdir levy_word_emb
+mv deps.words levy_word_emb
 python preprocess.py
 python case_wordNER.py
 ```
