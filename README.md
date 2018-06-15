@@ -1,4 +1,4 @@
-# Named Entity Recognition - 2018 - RDD Corpus
+# Named Entity Recognition - RDD Corpus
 Named-entity recognition (NER) (also known as entity identification, entity chunking and entity extraction) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This work explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities.
 
 ## Corpus RDD (BIO format)
