@@ -95,10 +95,65 @@ Non-trainable params: 895,500
 __________________________________________________________________________________________________
 ```
 
-## Instructions for loading the pre-trained model
+### Making predictions
 ```python
+from keras.preprocessing import sequence
 from keras.models import load_model
-model = load_model('trained-model/case_embedding_model.h5')
+import gzip
+import cPickle as pkl
+from utils import getCasing
+import numpy as np
+
+# Instructions for loading the pre-trained model
+model = load_model('trained-model/case-embedding-model.h5')
+
+# Load dictionaries
+word2Idx, label2Idx, case2Idx = pkl.load(gzip.open('pkl_reduc/utils.pkl.gz', 'rb'))
+idx2Label = {label2Idx[y]:y for y in label2Idx }
+
+# Translation of terms based on dictionaries - 300 is the maximum sentence length allowed by the experiment
+trad_tokens = [word2Idx[x] if x in word2Idx else word2Idx["UNKNOWN_TOKEN"] for x in a.split(" ")]
+trad_tokens = sequence.pad_sequences([trad_tokens],maxlen=300,padding='post',value=word2Idx["PADDING_TOKEN"])
+
+trad_casing = [getCasing(x,case2Idx) for x in a.split(" ")]
+trad_casing = sequence.pad_sequences([trad_casing],maxlen=300,padding='post',value=word2Idx["PADDING_TOKEN"])
+
+
+sentence = "Furthermore such disruption in white matter organization appears to be a feature specific to Aicardi syndrome and not shared by other neurodevelopmental disorders with similar anatomic manifestations ."
+
+zip(sentence.split(" "),[idx2Label[x] for x in np.argmax(model.predict([trad_tokens,trad_casing], verbose=0), axis=2)[0]][:len(sentence.split(" "))])
+```
+
+```
+Out[37]: 
+[('Furthermore', 'BI'),
+ ('such', 'II'),
+ ('disruption', 'II'),
+ ('in', 'O'),
+ ('white', 'O'),
+ ('matter', 'O'),
+ ('organization', 'O'),
+ ('appears', 'O'),
+ ('to', 'O'),
+ ('be', 'O'),
+ ('a', 'O'),
+ ('feature', 'O'),
+ ('specific', 'O'),
+ ('to', 'O'),
+ ('Aicardi', 'BU'),
+ ('syndrome', 'IU'),
+ ('and', 'O'),
+ ('not', 'O'),
+ ('shared', 'O'),
+ ('by', 'O'),
+ ('other', 'O'),
+ ('neurodevelopmental', 'BI'),
+ ('disorders', 'II'),
+ ('with', 'O'),
+ ('similar', 'O'),
+ ('anatomic', 'O'),
+ ('manifestations', 'O'),
+ ('.', 'O')]
 ```
 
 ## Results
