@@ -44,7 +44,7 @@ For this experiment Dependency-Based Word Embeddings has been used [1]
 ```bash
 curl http://u.cs.biu.ac.il/~yogo/data/syntemb/deps.words.bz2 --output deps.words.bz2
 bzip2 -d deps.words.bz2
-rm -r levy_word_emb && mkdir levy_word_emb
+rm -rf levy_word_emb && mkdir levy_word_emb
 mv deps.words levy_word_emb
 ```
 To run the experiment
