@@ -2,6 +2,8 @@
 Use of deep learning for the recognition of named entities in the RDD corpus.
 
 ## Instructions for run the experiment
+
+For this experiment Dependency-Based Word Embeddings has been used [1]
 ```bash
 curl http://u.cs.biu.ac.il/~yogo/data/syntemb/deps.words.bz2 --output deps.words.bz2
 bzip2 -d deps.words.bz2
@@ -10,15 +12,31 @@ mv deps.words levy_word_emb
 python preprocess.py
 python case_wordNER.py
 ```
-
+The model shown here has the following configuration:
+```python
+experiment_configuration = {
+    "lstm_param": 100,
+    "dropout": 0.5,
+    "decay": 1e-8,
+    "lr": 0.03,
+    "number_of_epochs": 150,
+    "minibatch_size": 128,
+    "n_folds": 10,
+    "numHiddenUnits": 100
+}
+```
 
 ## Instructions for loading the model
 ```python
 from keras.models import load_model
-model = load_model('case_embedding_model.h5')
+model = load_model('trained-model/case_embedding_model.h5')
 ```
 
+
+
 ## Results
+
+We have evaluated our model using a 10-fold cross validation. In the following table you can see that we have considered two different forms of evaluation. On the one hand, in the first evaluation the "B-" and "I-" labels are only considered correct if they are in the correct sequence. Moreover, the second evaluation takes into account the concordance of the different labels (excluding O) separately. We provide overall results and separate results for both types of entities.
 
 |                 	|           	| Evaluation 1 	|           	|           	| Evaluation 2 	|           	|
 |-----------------	|-----------	|--------------	|-----------	|-----------	|--------------	|-----------	|
@@ -28,4 +46,4 @@ model = load_model('case_embedding_model.h5')
 | LSTM-W+C(DI)    	| 76.31     	| 74.96        	| 75.58     	| 80.85     	| 81.44        	| 81.11     	|
 
 
-
+[1] - Levy, O., & Goldberg, Y. (2014). Neural word embedding as implicit matrix factorization. In Advances in neural information processing systems (pp. 2177-2185).
