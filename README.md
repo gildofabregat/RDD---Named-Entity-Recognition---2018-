@@ -2,7 +2,7 @@
 Named-entity recognition (NER) (also known as entity identification, entity chunking and entity extraction) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This work explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities.
 
 ## Corpus RDD (BIO format)
-We have made use of the relationship files provided in the RDD corpus to carry out this experiment. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
+To carry out this experiment we have made use of the relationships file provided in the RDD corpus. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
 ```
 0	Furthermore	O	O
 1	such	O	O
@@ -33,6 +33,10 @@ We have made use of the relationship files provided in the RDD corpus to carry o
 26	manifestations	O	O
 27 . O O
 ```
+This file is located at: src/files/data.txt
+
+
+
 
 ## Instructions for run the experiment
 
@@ -60,6 +64,35 @@ experiment_configuration = {
     "n_folds": 10,
     "numHiddenUnits": 100
 }
+```
+```
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_1 (InputLayer)            (None, 300)          0                                            
+__________________________________________________________________________________________________
+input_2 (InputLayer)            (None, 300)          0                                            
+__________________________________________________________________________________________________
+embedding_1 (Embedding)         (None, 300, 300)     895500      input_1[0][0]                    
+__________________________________________________________________________________________________
+embedding_2 (Embedding)         (None, 300, 8)       64          input_2[0][0]                    
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 300, 308)     0           embedding_1[0][0]                
+                                                                 embedding_2[0][0]                
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 300, 100)     30900       concatenate_1[0][0]              
+__________________________________________________________________________________________________
+bidirectional_1 (Bidirectional) (None, 300, 200)     160800      dense_1[0][0]                    
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 300, 100)     20100       bidirectional_1[0][0]            
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 300, 100)     0           dense_2[0][0]                    
+__________________________________________________________________________________________________
+time_distributed_1 (TimeDistrib (None, 300, 6)       606         dropout_1[0][0]                  
+==================================================================================================
+Total params: 1,107,970
+Trainable params: 212,470
+Non-trainable params: 895,500
+__________________________________________________________________________________________________
 ```
 
 ## Instructions for loading the pre-trained model
