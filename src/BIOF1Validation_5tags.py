@@ -1,7 +1,7 @@
 """
 Computes the F1 score on BIO tagged data
 
-Some of the following code is inspired or based on the repository:
+Some of these functions have been adapted from the code on the repository:
 https://github.com/UKPLab/deeplearning4nlp-tutorial
 
 """
