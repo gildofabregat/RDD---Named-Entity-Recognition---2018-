@@ -2,23 +2,23 @@
 Named-entity recognition (NER) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This document explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities[2].
 
 ## Directory Structure
-.
-├── src 
-│   ├── files
-│   │   ├── data.txt (Text file with the corpus)
-│   ├── pkl_reduc (Intermediate directory with the preprocessed information.)
-│   │   ├── *.pk 
-│   └── BIOF1Validation_5tags.py (File which contains the different functions for the evaluation)
-│   ├── case_wordNER.py (File which contains the routines for creating and training the model)
-│   ├── preprocess.py (Script for corpus preprocessing)
-│   ├── utils.py (tool box library)
-├── trained-model (or build)
-│   ├── case-embedding-model.h5
-│   ├── prediction-case.txt
-│   ├── test-case.txt
-├── Readme.md
-├── requirements.txt
-
+This repository is divided as follows:
+    .
+    ├── src 
+    │   ├── files
+    │   │   ├── data.txt (Text file with the corpus)
+    │   ├── pkl_reduc (Intermediate directory with the preprocessed information.)
+    │   │   ├── *.pk 
+    │   └── BIOF1Validation_5tags.py (File which contains the different functions for the evaluation)
+    │   ├── case_wordNER.py (File which contains the routines for creating and training the model)
+    │   ├── preprocess.py (Script for corpus preprocessing)
+    │   ├── utils.py (tool box library)
+    ├── trained-model (or build)
+    │   ├── case-embedding-model.h5
+    │   ├── prediction-case.txt
+    │   ├── test-case.txt
+    ├── Readme.md
+    ├── requirements.txt
 
 ## Corpus RDD (BIO format)
 To carry out this experiment we have made use of the relationships file provided in the RDD corpus. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
