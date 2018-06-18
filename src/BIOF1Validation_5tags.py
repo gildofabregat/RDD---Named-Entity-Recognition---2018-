@@ -1,7 +1,9 @@
 """
 Computes the F1 score on BIO tagged data
 
-@author: Lourdes Araujo
+Some of the following code is inspired or based on the repository:
+https://github.com/UKPLab/deeplearning4nlp-tutorial
+
 """
 
 
