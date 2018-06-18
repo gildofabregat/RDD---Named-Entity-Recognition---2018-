@@ -1,5 +1,5 @@
 # Named Entity Recognition - RDD Corpus
-Named-entity recognition (NER) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This document explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities[2].
+This document explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities[2].
 
 ## Directory Structure
 This repository is divided as follows:
@@ -10,8 +10,8 @@ This repository is divided as follows:
     │   │   ├── data.txt (Text file with the corpus)
     │   ├── pkl_reduc (Intermediate directory with the preprocessed information.)
     │   │   ├── *.pk 
-    │   └── BIOF1Validation_5tags.py (File which contains the different functions for the evaluation)
-    │   ├── case_wordNER.py (File which contains the routines for creating and training the model)
+    │   └── BIOF1Validation_5tags.py (Different Python functions for the evaluation)
+    │   ├── case_wordNER.py (Python code for creating and training the model)
     │   ├── preprocess.py (Script for corpus preprocessing)
     │   ├── utils.py (tool box library)
     ├── trained-model (or build)
@@ -22,7 +22,7 @@ This repository is divided as follows:
     ├── requirements.txt
 
 ## Corpus RDD (BIO format)
-To carry out this experiment we have made use of the relationships file provided in the RDD corpus. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
+To carry out this experiment we have used the relationships file provided in the RDD corpus. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
 ```
 0	Furthermore	O	O
 1	such	O	O
@@ -191,4 +191,4 @@ We have evaluated our model using a 10-fold cross validation. In the following t
 
 [1] - Levy, O., & Goldberg, Y. (2014). Neural word embedding as implicit matrix factorization. In Advances in neural information processing systems (pp. 2177-2185).
 
-[2] -  Lourdes Araujo, Hermenegildo Fabregat Marcos, Juan Martinez-romo (2018). Deep neural models for extracting entities and relationships in the new RDD corpus relating disabilities and rare diseases (In revision)
+[2] - Hermenegildo Fabregat Marcos, Lourdes Araujo, Juan Martinez-Romo (2018). Deep neural models for extracting entities and relationships in the new RDD corpus relating disabilities and rare diseases (In revision)
