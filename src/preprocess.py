@@ -1,8 +1,9 @@
 """
 The file preprocesses the files/train.txt and files/test.txt files.
 
-I requires the dependency based embeddings by Levy et al.. Download them from his website and change 
-the embeddingsPath variable in the script to point to the unzipped deps.words file.
+Some of the following code is inspired or based on the repository:
+https://github.com/UKPLab/deeplearning4nlp-tutorial
+
 """
 
 import numpy as np
