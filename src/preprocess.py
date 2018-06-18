@@ -1,7 +1,7 @@
 """
 The file preprocesses the files/train.txt and files/test.txt files.
 
-Some of the following code is inspired or based on the repository:
+Some of the following functions have been adapted from the code on the repository:
 https://github.com/UKPLab/deeplearning4nlp-tutorial
 
 """
