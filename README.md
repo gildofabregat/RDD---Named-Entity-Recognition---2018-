@@ -2,8 +2,7 @@
 Named-entity recognition (NER) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This document explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities[2].
 
 ## Directory Structure
-
-```bash
+.
 ├── src 
 │   ├── files
 │   │   ├── data.txt (Text file with the corpus)
@@ -19,7 +18,7 @@ Named-entity recognition (NER) is a subtask of information extraction that seeks
 │   ├── test-case.txt
 ├── Readme.md
 ├── requirements.txt
-```
+
 
 ## Corpus RDD (BIO format)
 To carry out this experiment we have made use of the relationships file provided in the RDD corpus. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
