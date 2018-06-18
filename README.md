@@ -3,6 +3,7 @@ Named-entity recognition (NER) is a subtask of information extraction that seeks
 
 ## Directory Structure
 This repository is divided as follows:
+
     .
     ├── src 
     │   ├── files
