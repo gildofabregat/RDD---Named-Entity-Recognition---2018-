@@ -1,5 +1,5 @@
 # Named Entity Recognition - RDD Corpus
-Named-entity recognition (NER) (also known as entity identification, entity chunking and entity extraction) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This work explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities.
+Named-entity recognition (NER) is a subtask of information extraction that seeks to locate and classify named entities in text into pre-defined categories such as the names of persons, organizations, locations, expressions of times, quantities, monetary values, percentages, etc. This document explains the details for the reproduction of the results obtained with the RDD corpus in the task of detecting rare diseases and disabilities[2].
 
 ## Corpus RDD (BIO format)
 To carry out this experiment we have made use of the relationships file provided in the RDD corpus. These files include annotations about disabilities and rare diseases in the BIO-Format (Begin-In-Out) that appear in the different sentences. An example can be found below
@@ -38,7 +38,7 @@ This file is located at: src/files/data.txt
 
 
 
-## Instructions for run the experiment
+## Instructions for running the experiment
 
 For this experiment Dependency-Based Word Embeddings has been used [1]
 ```bash
@@ -169,3 +169,5 @@ We have evaluated our model using a 10-fold cross validation. In the following t
 
 
 [1] - Levy, O., & Goldberg, Y. (2014). Neural word embedding as implicit matrix factorization. In Advances in neural information processing systems (pp. 2177-2185).
+
+[2] -  Lourdes Araujo, Hermenegildo Fabregat Marcos, Juan Martinez-romo (2018). Deep neural models for extracting entities and relationships in the new RDD corpus relating disabilities and rare diseases (In revision)
